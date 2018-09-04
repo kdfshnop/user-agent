@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<script>
+    		getUserAgent() {
+        	let ua = navigator.userAgent;
+        	let uaObj = {
+           	"mobile" : false ,
+            "ios" : false ,
+            "iphone" : false ,
+            "ipad" : false ,
+            "android" : false ,
+            "webos" : false ,
+            "mac" : false ,
+            "windows" : false
+        	} ;
+        	if (/mobile/i.test(ua)) uaObj.mobile = true ;  //判断是否移动端
+        	if (/like Mac OS X/.test(ua)) {  
+            uaObj.ios = /CPU( iPhone)? OS ([0-9\._]+) like Mac OS X/.exec(ua)[2].replace(/_/g, '.') ; //是否ios系统
+            uaObj.iphone = /iPhone/.test(ua) ;  //是否iphone
+            uaObj.ipad = /iPad/.test(ua) ;  //是否ipad
+        	}
+        	if (/Android/.test(ua))  uaObj.android = /Android ([0-9\.]+)[\);]/.exec(ua)[1] ;
+        	if (/webOS\//.test(ua))  uaObj.webos = /webOS\/([0-9\.]+)[\);]/.exec(ua)[1] ;
+        	if (/(Intel|PPC) Mac OS X/.test(ua))  uaObj.mac = /(Intel|PPC) Mac OS X ?([0-9\._]*)[\)\;]/.exec(ua)[2].replace(/_/g, '.') || true ; 
+        	if (/Windows NT/.test(ua)) uaObj.windows = /Windows NT ([0-9\._]+)[\);]/.exec(ua)[1] ;
+        	return uaObj ;
+    		}
+    	</script>
+    </body>
+</html>
